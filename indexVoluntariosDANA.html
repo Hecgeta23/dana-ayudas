@@ -1,0 +1,163 @@
+<html>
+<head>
+    <title>Solicitud de Ayuda para Dana en Valencia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .form-container h2 {
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .requests-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .request-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .request-item:last-child {
+            border-bottom: none;
+        }
+        .remove-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solicitud de Ayuda para Dana en Valencia</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <h2>Solicitar Ayuda</h2>
+            <div class="form-group">
+                <label for="name">Tu Nombre</label>
+                <input type="text" id="name" placeholder="Introduce tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción de la Ayuda Necesaria</label>
+                <textarea id="description" rows="4" placeholder="Describe la ayuda que necesitas"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" placeholder="Introduce tu dirección">
+            </div>
+            <div class="form-group">
+                <label for="floor">Piso</label>
+                <input type="text" id="floor" placeholder="Introduce tu piso">
+            </div>
+            <div class="form-group">
+                <label for="letter">Letra</label>
+                <input type="text" id="letter" placeholder="Introduce tu letra">
+            </div>
+            <div class="form-group">
+                <button id="submit">Enviar Solicitud</button>
+            </div>
+        </div>
+        <div class="requests-container" id="requests-container">
+            <h2>Solicitudes de Ayuda</h2>
+        </div>
+    </div>
+    <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const address = document.getElementById('address').value;
+            const floor = document.getElementById('floor').value;
+            const letter = document.getElementById('letter').value;
+
+            if (name && description && address && floor && letter) {
+                const requestContainer = document.getElementById('requests-container');
+                const requestItem = document.createElement('div');
+                requestItem.className = 'request-item';
+                requestItem.innerHTML = `
+                    <div>
+                        <h3>${name}</h3>
+                        <p><strong>Descripción:</strong> ${description}</p>
+                        <p><strong>Dirección:</strong> ${address}</p>
+                        <p><strong>Piso:</strong> ${floor}</p>
+                        <p><strong>Letra:</strong> ${letter}</p>
+                    </div>
+                    <button class="remove-button">Eliminar</button>
+                `;
+                requestContainer.appendChild(requestItem);
+
+                requestItem.querySelector('.remove-button').addEventListener('click', function() {
+                    requestContainer.removeChild(requestItem);
+                });
+
+                alert('¡Solicitud de ayuda enviada!');
+            } else {
+                alert('Por favor, rellena todos los campos.');
+            }
+        });
+    </script>
+</body>
+</html>
